@@ -1,0 +1,26 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="login_p plugin: MKDoc::Auth::Plugin::Login"
+>
+
+  <head>
+    <title>Account Activation</title>
+  </head>
+
+  <body>
+
+    <h1>Account Activation.</h1>
+    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+
+    <p petal:condition="false: self/has_errors">
+      Your account is now active. You can 
+      <a href="${login_p/uri}">Login</a> onto this site.
+    </div>
+
+    <p petal:condition="true:self/has_errors">
+      Due to these errors, your account cannot be activated.
+    </p>
+
+  </body>
+</html>      

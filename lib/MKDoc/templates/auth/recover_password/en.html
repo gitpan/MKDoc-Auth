@@ -1,0 +1,33 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+  <head>
+    <title>Password Recovery</title>
+  </head>
+  <body>
+    <h1>Password Recovery</h1>
+
+    <!--? report errors, if any ?-->
+    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+
+    <p petal:condition="true: self/is_post; true: self/matching_users">
+      <strong>A password recovery email has been sent.</strong>
+    </p>
+
+    <!--? display input form ?-->
+    <div>
+      <form petal:attributes="action self/uri" action="#" method="POST">
+        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        <table>
+          <tr>
+            <td>Login:</td>
+            <td><input type="text" name="login" petal:attributes="value self/request/param --login" size="25" /></td>
+          </tr>
+        </table>
+
+        <input type="submit" value="Send Email" />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+  <head>
+    <title>Signup / Create a New Account</title>
+  </head>
+  <body>
+    <h1>Signup / Create a New Account</h1>
+
+    <!--? report errors, if any ?-->
+    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+
+    <div petal:condition="true:self/object">
+      <p>An email has been sent to <a href="mailto:${self/object/email}">${self/object/email}</a>.</p>
+      <p>It contains a confirmation link as well as your login and password information.</p>
+    </div>
+
+    <div petal:condition="false:self/object">
+
+      <!--? display input form ?-->
+      <form petal:attributes="action self/uri" action="#" method="POST">
+        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        <table>
+          <tr>
+            <td>Email / Login:</td>
+            <td><input type="text" name="email" petal:attributes="value self/request/param --email" size="25" /></td>
+          </tr>
+          <tr>
+            <td>Full Name:</td>
+            <td><input type="text" name="full_name" petal:attributes="value self/request/param --full_name" size="25" /></td>
+          </tr>
+        </table>
+
+        <input type="submit" value="Create Account" />
+      </form>
+    </div>
+  </body>
+</html>

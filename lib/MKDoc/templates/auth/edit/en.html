@@ -1,0 +1,40 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+  <head>
+    <title>Edit ${self/object/full_name}</title>
+  </head>
+  <body>
+    <h1>Edit ${self/object/full_name}</h1>
+
+    <!--? report errors, if any ?-->
+    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+
+    <!--? display input form ?-->
+    <form petal:attributes="action self/uri" action="#" method="POST">
+      <table>
+
+        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        <tr>
+          <td>Full Name:</td>
+          <td><input type="text" name="full_name" petal:attributes="value self/request/param --full_name" size="25" /></td>
+        </tr>
+        <tr>
+          <td>Email Address:</td>
+          <td><input type="text" name="email" petal:attributes="value self/request/param --email" size="25" /></td>
+        </tr>
+        <tr>
+          <td>Password:</td>
+          <td><input type="password" name="password_1" petal:attributes="value self/request/param --password_1" size="25" /></td>
+        </tr>
+        <tr>
+          <td>Password (Verify):</td>
+          <td><input type="password" name="password_2" petal:attributes="value self/request/param --password_2" size="25" /></td>
+        </tr>
+      </table>
+      <input type="submit" value="Save Changes" />
+    </form>
+    <a href="${self/return_uri}">Cancel Changes</a>
+  </body>
+</html>

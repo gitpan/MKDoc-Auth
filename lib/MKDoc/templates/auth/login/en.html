@@ -1,0 +1,43 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="edit_p          plugin: MKDoc::Auth::Plugin::Edit;
+                remove_p        plugin: MKDoc::Auth::Plugin::Remove;
+                signup_p        plugin: MKDoc::Auth::Plugin::Signup;
+                login_recover_p plugin: MKDoc::Auth::Plugin::Recover_Login;
+                pass_recover_p  plugin: MKDoc::Auth::Plugin::Recover_Password;
+                self_uri   self/uri"
+>
+  <head>
+    <title>Authentication</title>
+  </head>
+  <body>
+    <h1>Authentication</h1>
+
+    <div petal:condition="true: self/user">
+      <p>You are now logged in as <strong petal:content="self/user/login">Login</strong>
+         (<span petal:replace="self/user/full_name">Full_Name</span>).</p>
+      <p>You can do the following:</p>
+      <ul>
+        <li petal:condition="true: edit_p"><a href="${edit_p/uri}">Edit this account</a>.</li>
+        <li><a href="${self/uri}">Re-login</a> or <a href="${self/uri}">Logout</a>.</li>
+        <li petal:condition="true: remove_p"><a href="${remove_p/uri}">Remove this account</a>.</li>
+      </ul>
+    </div>
+
+    <div petal:condition="false: self/user">
+      <p>You are currently <strong>logged out</strong>.</p>
+      <p>Did you just try to log in? You might have mistyped your login or password.</p>
+      <ul>
+        <li><a href="${self/uri}">Try to login again</a>.</li>
+        <li><a href="${login_recover_p/uri}">Recover lost login</a>.</li>
+        <li><a href="${pass_recover_p/uri}">Recover lost password</a>.</li>
+      </ul>
+    </div>
+
+    <div>
+      <p>If you do not have a user account, you can <a href="${signup_p/uri}">sign up</a>
+         for a new one.</p>
+    </div>
+  </body>
+</html>

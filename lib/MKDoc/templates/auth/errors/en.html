@@ -1,0 +1,37 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+  <head>
+    <title>Auth Admin Errors</title>
+  </head>
+  <body>
+    <div metal:define-macro="body" class="error" petal:condition="true:self/has_errors">
+      <p>One or more errors were found:</p>
+      <div petal:omit-tag="string:1" petal:repeat="error self/errors">
+        <li petal:condition="error/is --auth/email/cannot_send">BUG: could not send subscription email.</li>
+        <li petal:condition="error/is --auth/user/id/undefined">BUG: auth/user/id/undefined.</li>
+        <li petal:condition="error/is --auth/user/id/no_match">BUG: auth/user/id/no_match.</li>
+        <li petal:condition="error/is --auth/user/login/changed">BUG: auth/user/login/changed.</li>
+        <li petal:condition="error/is --auth/user/login/empty">This login cannot be empty.</li>
+        <li petal:condition="error/is --auth/user/login/too_short">This login is too short.</li>
+        <li petal:condition="error/is --auth/user/login/too_long">This login is too long.</li>
+        <li petal:condition="error/is --auth/user/login/exists">This login already exists.</li>
+        <li petal:condition="error/is --auth/user/password/empty">This password field cannot be empty.</li>
+        <li petal:condition="error/is --auth/user/password/too_short">This password is too short.</li>
+        <li petal:condition="error/is --auth/user/password/too_long">This password is too long.</li>
+        <li petal:condition="error/is --auth/user/password/mismatch">The passwords do not match.</li>
+        <li petal:condition="error/is --auth/user/email/empty">You must provide a valid email address.</li>
+        <li petal:condition="error/is --auth/user/email/invalid">This email address does not appear to be valid.</li>
+        <li petal:condition="error/is --auth/user/full_name/empty">You must enter the full name for this account.</li>
+        <li petal:condition="error/is --auth/user/full_name/too_short">The full name field is too short.</li>
+        <li petal:condition="error/is --auth/user/full_name/too_long">The full name field is too long.</li>
+        <li petal:condition="error/is --auth/confirm/mismatch">The confirmation id does not match.</li>
+        <li petal:condition="error/is --auth/plugin/recover_login/email_empty">You must provide a valid email address.</li>
+        <li petal:condition="error/is --auth/plugin/recover_login/no_match">There is no account associated with this address.</li>
+        <li petal:condition="error/is --auth/plugin/recover_password/login_empty">You must provide a valid login.</li>
+        <li petal:condition="error/is --auth/plugin/recover_password/no_match">There is no account associated with this login.</li>
+      </div>
+    </div>
+  </body>
+</html>

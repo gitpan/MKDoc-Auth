@@ -1,0 +1,51 @@
+<Message
+  xmlns="http://www.openhealth.org/xmtp#"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="confirm_plugin plugin: MKDoc::Auth::Plugin::Confirm"
+>
+
+  <Content-Type>text/plain; charset=utf-8; format=flowed</Content-Type>
+  <Content-Disposition>inline</Content-Disposition>
+  <Content-Transfer-Encoding>8bit</Content-Transfer-Encoding>
+  <Content-Language>en</Content-Language>
+  <MIME-Version>1.0</MIME-Version>
+
+  <From petal:content="self/env/SERVER_ADMIN">info@example.com&gt;</From>
+  <To petal:content="self/object/email">fred.flintstone@rocks.com</To>
+  <Subject petal:content="string:${self/env/SERVER_NAME} Account - Signup">www.example.com Account - Signup</Subject>
+  <User-Agent>Petal::Mail 0.2</User-Agent>
+  <Organization petal:content="self/env/SERVER_NAME">www.example.com</Organization>
+
+  <body xmlns="http://www.w3.org/1999/xhtml">
+
+    <p>Dear ${self/object/full_name},</p>
+
+    <p>Someone (probably you) visited our website and requested to open a new
+user account.</p>
+
+    <p>
+In order to activate your account, please visit the following address as soon as possible: 
+    </p>
+
+<pre petal:content="confirm_plugin/uri --object self/object">ACTIVATE_URI</pre>
+
+    <p>Once you have done this, you will be able to login at this address:</p>
+
+<pre petal:content="self/login_address">LOGIN_ADDRESS</pre>
+
+    <p>Your user details are the following:</p>
+
+<pre>Username: ${self/login}
+Password: ${self/password}</pre>
+
+    <p>
+(This an automatic mail sent by a program because somebody asked for it. If you
+do not intend to open a new user account, simply ignore it.)
+    </p>
+
+    <pre>-- 
+${self/env/SERVER_NAME} - ${self/env/SERVER_ADMIN}
+</pre> 
+
+  </body>
+</Message>

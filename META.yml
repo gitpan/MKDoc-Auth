@@ -1,0 +1,17 @@
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         MKDoc-Auth
+version:      0.1
+version_from: lib/MKDoc/Auth.pm
+installdirs:  site
+requires:
+    Crypt::PassGen:                0.04
+    File::Touch:                   0.01
+    MKDoc::Core:                   0.3
+    MKDoc::SQL:                    0.5
+    Petal:                         2.04
+    Scalar::Util:                  1.07
+    Test::Harness:                 2.00
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17

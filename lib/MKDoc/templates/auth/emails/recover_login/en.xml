@@ -1,0 +1,42 @@
+<Message
+  xmlns="http://www.openhealth.org/xmtp#"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+
+  <Content-Type>text/plain; charset=utf-8; format=flowed</Content-Type>
+  <Content-Disposition>inline</Content-Disposition>
+  <Content-Transfer-Encoding>8bit</Content-Transfer-Encoding>
+  <Content-Language>en</Content-Language>
+  <MIME-Version>1.0</MIME-Version>
+
+  <From petal:content="self/env/SERVER_ADMIN">info@example.com&gt;</From>
+  <To petal:content="self/email">fred.flintstone@rocks.com</To>
+  <Subject petal:content="string:${self/env/SERVER_NAME} Account - Login Reminder">www.example.com Account - Login Reminder</Subject>
+  <User-Agent>Petal::Mail 0.2</User-Agent>
+  <Organization petal:content="self/env/SERVER_NAME">www.example.com</Organization>
+
+  <body xmlns="http://www.w3.org/1999/xhtml">
+
+    <p>Dear ${self/matching_users/0/full_name},</p>
+
+    <p>Someone (probably you) visited our website and requested a login
+reminder.</p>
+
+    <p>
+Here is a list of your user accounts on ${self/env/SERVER_NAME}
+    </p>
+
+<pre petal:repeat="user self/matching_users">Login : ${user/login}
+Name  : ${user/full_name}</pre>
+
+    <p>
+(This an automatic mail sent by a program because somebody asked for it. If you
+do not intend to receive a login reminder, please let us know.)
+    </p>
+
+    <pre>-- 
+${self/env/SERVER_NAME} - ${self/env/SERVER_ADMIN}
+</pre> 
+
+  </body>
+</Message>

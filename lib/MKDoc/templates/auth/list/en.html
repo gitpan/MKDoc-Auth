@@ -1,0 +1,26 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="
+    users        self/list;
+    plugin_add   plugin: MKDoc::Auth::Plugin::Admin::Add;
+    plugin_edit  plugin: MKDoc::Auth::Plugin::Admin::Edit;
+"
+>
+  <head>
+    <title>List All Users</title>
+  </head>
+  <body>
+    <h1>List All Users</h1>
+    <a href="#" petal:attributes="href plugin_add/uri_relative">Add a new User</a>
+    <table petal:condition="true:users" width="100%">
+      <tr petal:repeat="user users">
+        <td><a petal:attributes="href plugin_edit/uri --object user" petal:content="user/full_name">Joe Schmoe</a></td>
+        <td><a href="mailto:${user/email}" petal:content="user/login">joe@schmoe.net</a></td>
+      </tr>
+    </table>
+    <p petal:condition="false:users">
+      - no users -
+    </p>
+  </body>
+</html>

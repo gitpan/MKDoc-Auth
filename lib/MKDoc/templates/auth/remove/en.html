@@ -1,0 +1,26 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+>
+  <head>
+    <title>Account Removal</title>
+  </head>
+  <body>
+    <h1>Account Removal</h1>
+
+    <!--? report errors, if any ?-->
+    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+
+    <p><strong>This will permanently delete this user account.</strong></p>
+
+    <!--? display input form ?-->
+    <div>
+      <form petal:attributes="action self/uri" action="#" method="POST">
+        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        <input type="submit" value="Delete Account" />
+      </form>
+    </div>
+
+    <a href="${self/return_uri}">Cancel</a>
+  </body>
+</html>

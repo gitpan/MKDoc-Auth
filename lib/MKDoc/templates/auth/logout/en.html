@@ -1,0 +1,17 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="login_p plugin: MKDoc::Auth::Plugin::Login"
+>
+  <head>
+    <title>Logout</title>
+  </head>
+  <body>
+    <h1>Logout</h1>
+    <ul>
+      <li>In order to logout, press "Cancel".</li>
+      <li>In order to login as a different user, simply enter your new credentials.</li>
+      <li>If you have logged out, <a href="${login_p/uri}">you can log in again</a>.</li>
+    </ul>
+  </body>
+</html>

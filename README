@@ -1,0 +1,57 @@
+MKDoc::Auth - Authentication Framework for MKDoc::Core
+======================================================
+
+MKDoc::Auth is an authentication framework re-written from the MKDoc content
+management system.
+
+It provides the following facilities:
+
+* Authentication
+* Signup page
+* Account confirmation
+* Login / logout / log as someone else
+* Edit account
+* I have lost my login!
+* I have lost my password!
+* Delete account
+
+This framework is a step further in our great 'open-source MKDoc as a bunch of
+independant modules' plan.
+
+
+INSTALLATION
+
+To install this module type the following:
+
+  perl Makefile.PL
+  make
+  make test
+  make install
+
+Or better, use CPAN.pm
+
+
+DEPENDENCIES
+
+  Test::Harness  2.00
+  Scalar::Util   1.07
+  MKDoc::SQL     0.5
+  MKDoc::Core    0.3
+  Petal          2.04
+  File::Touch    0.01
+  Crypt::PassGen 0.04 
+  
+  Want to help us open-source MKDoc?
+  Join the MKDoc-Modules community!
+
+  http://lists.webarch.co.uk/mailman/listinfo/mkdoc-modules
+ 
+
+COPYRIGHT AND LICENCE
+
+  This module free software and is distributed under the
+  same license as Perl itself.
+
+  Copyright (C) 2003 MKDoc Holdings Ltd.
+
+  Author: Jean-Michel Hiver <jhiver@mkdoc.com>
