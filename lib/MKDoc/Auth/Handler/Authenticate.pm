@@ -88,7 +88,8 @@ sub handler
     }
    
     # fetches the user
-    my $user = MKDoc::Auth::User->load_from_login ($login) || do {
+    my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+    my $user = $class->load_from_login ($login) || do {
         $r->note_basic_auth_failure;
         return AUTH_REQUIRED;
     };

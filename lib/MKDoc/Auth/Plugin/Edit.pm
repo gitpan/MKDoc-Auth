@@ -186,7 +186,8 @@ sub object
     my ($login) = $path =~ /^\/~(.*)\/\.$hint$/;
     $login || return;
 
-    return MKDoc::Auth::User->load_from_login ($login);
+    my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+    return $class->load_from_login ($login);
 }
 
 

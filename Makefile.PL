@@ -5,6 +5,9 @@ use strict;
 use MKDoc::Setup::SQL;
 use File::Spec;
 
+$ENV{EXTENDED_TESTS} || print STDERR "env EXTENDED_TESTS not set - skipping interactive setup\n";
+$ENV{EXTENDED_TESTS} && do {
+
 print <<'EOF';
 I am going to launch a setup utility. If you do not have a test database, you
 can cancel the setup - but the test suite will mostly skipped.
@@ -28,6 +31,7 @@ else
     wait;
 }
 
+};
 
 
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence

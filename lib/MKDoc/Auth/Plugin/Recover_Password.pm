@@ -27,6 +27,13 @@ use warnings;
 use base qw /MKDoc::Core::Plugin/;
 
 
+# this is to avoid silly 'used only once' warnings
+sub sillyness
+{
+    $::MKD_Auth_User_CLASS;
+}
+
+
 =head1 API
 
 =head2 $self->location();
@@ -167,7 +174,8 @@ sub object
 {
     my $self  = shift;
     my $login = $self->login() || return;
-    return MKDoc::Auth::User->load_from_login ($login);
+    my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User'; 
+    return $class->load_from_login ($login);
 }
 
  

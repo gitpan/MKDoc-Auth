@@ -7,7 +7,7 @@
   The page content is split into 3 sections using divs with the classes
   header, content and footer.
 
-  $Id: en.html,v 1.4 2004/04/26 10:29:50 jhiver Exp $
+  $Id: en.html,v 1.5 2004/08/04 11:58:28 jhiver Exp $
 
 ?-->
 <html
@@ -58,7 +58,7 @@
         </p>
       </div>
  
-      <p petal:condition="true: self/is_post; true: self/matching_users">
+      <p petal:condition="true: self/is_post; true: self/object">
         <strong>A password recovery email has been sent.</strong>
       </p>
  

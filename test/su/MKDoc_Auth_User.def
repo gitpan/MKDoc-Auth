@@ -1,0 +1,57 @@
+$VAR1 = bless( {
+                 'unique' => {
+                               'login_unique' => [
+                                                   'Login'
+                                                 ]
+                             },
+                 'pk' => [
+                           'ID'
+                         ],
+                 'name' => 'MKDoc_Auth_User',
+                 'cols' => [
+                             {
+                               'name' => 'ID',
+                               'type' => bless( {
+                                                  'not_null' => 1
+                                                }, 'MKDoc::SQL::Type::Int' )
+                             },
+                             {
+                               'name' => 'Login',
+                               'type' => bless( {
+                                                  'not_null' => 1,
+                                                  'size' => 50
+                                                }, 'MKDoc::SQL::Type::Char' )
+                             },
+                             {
+                               'name' => 'Password',
+                               'type' => bless( {
+                                                  'not_null' => 1,
+                                                  'size' => 50
+                                                }, 'MKDoc::SQL::Type::Char' )
+                             },
+                             {
+                               'name' => 'Email',
+                               'type' => bless( {
+                                                  'not_null' => 1,
+                                                  'size' => 100
+                                                }, 'MKDoc::SQL::Type::Char' )
+                             },
+                             {
+                               'name' => 'Full_Name',
+                               'type' => bless( {
+                                                  'size' => 100
+                                                }, 'MKDoc::SQL::Type::Char' )
+                             },
+                             {
+                               'name' => 'Is_Deleted',
+                               'type' => bless( {
+                                                  'not_null' => 1
+                                                }, 'MKDoc::SQL::Type::Int' )
+                             }
+                           ],
+                 'index' => {},
+                 'selectbox' => undef,
+                 'ai' => 1,
+                 'fk' => {},
+                 'bless_into' => 'MKDoc::Auth::User'
+               }, 'MKDoc::SQL::Table' );

@@ -69,7 +69,7 @@ sub http_post
     my $self  = shift;
     $self->{is_post} = '1';
 
-    my $req   = MKDoc::Core::Request->instance();
+    my $req = MKDoc::Core::Request->instance();
 
     my $email = $req->param ('email') or do {
         new MKDoc::Core::Error 'auth/plugin/recover_login/email_empty';
@@ -148,7 +148,8 @@ sub matching_users
 {
     my $self  = shift;
     my $email = $self->email() || return;
-    my @res   = MKDoc::Auth::User->find_from_email ($email);
+    my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+    my @res   = $class->find_from_email ($email);
     return wantarray ? @res : \@res;
 }
 

@@ -32,3 +32,6 @@ META.yml
 README
 t/001_deploy_schema.t
 t/002_user_new.t
+test/init/10000_MKDoc::SQL::Init::DBI
+test/su/driver.pl
+test/su/MKDoc_Auth_User.def

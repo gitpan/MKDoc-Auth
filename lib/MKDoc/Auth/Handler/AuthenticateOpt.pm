@@ -94,7 +94,8 @@ sub handler
     my $pass  = get_password() || return OK;
     my $login = get_login()    || return OK;
 
-    my $user  = MKDoc::Auth::User->load_from_login ($login) || return OK;
+    my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+    my $user  = $class->load_from_login ($login) || return OK;
     $user->check_password ($pass)                           || return OK;
 
     $::MKD_USER = $user;

@@ -4,10 +4,10 @@ MKDoc::Auth::User - Simple user class for MKDoc::Auth
 
 =cut
 package MKDoc::Auth::User;
+use MKDoc::Core::FileCache;
 use MKDoc::Core::Error;
 use Mail::CheckUser;
 use MKDoc::SQL;
-use MKDoc::Core::FileCache;
 use warnings;
 use strict;
 

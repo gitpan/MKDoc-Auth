@@ -49,14 +49,16 @@ L<MKDoc::Auth::User>
 
 =cut
 package MKDoc::Auth::TempUser;
-use base qw /MKDoc::Auth::User/;
 use MKDoc::Core::Error;
 use Mail::CheckUser;
 use MKDoc::Core::FileCache;
 use Crypt::PassGen;
 use Data::Dumper;
+use MKDoc::Auth;
 use warnings;
 use strict;
+
+our @ISA = ();
 
 
 =head1 API
@@ -94,6 +96,10 @@ his accounts.
 sub new
 {
     my $class = shift;
+
+    local @ISA = ();
+    push  @ISA, $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+
     return $class->SUPER::new ( @_, confirm_nb => Crypt::PassGen::passgen() );
 }
 
@@ -111,7 +117,8 @@ sub confirm
     my $self = shift;
     my $nb   = shift;
     $self->confirm_nb() eq $nb and do {
-        new MKDoc::Auth::User (
+        my $class = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+        $class->new (
             login     => $self->login(),
             password  => $self->password(),
             email     => $self->email(),
@@ -183,6 +190,10 @@ sub load_from_login
     my $class  = shift || return;
     my $login  = shift || return;
     my $cache  = $class->_cache_object();
+
+    local @ISA = ();
+    push  @ISA, $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+
     return $class->SUPER::load_from_login_even_if_deleted ($login) || do {
         my $VAR1;
         my $data = $cache->get ($login) || return;
