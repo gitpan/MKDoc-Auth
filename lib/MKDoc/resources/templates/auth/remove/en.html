@@ -4,12 +4,18 @@
 >
   <head>
     <title>Account Removal</title>
+    <style
+      media="screen"
+      type="text/css"
+      title="Screen style sheet"
+      petal:content="string:@import url(/.resources/css/auth.css)\;"
+    >@import "../../../css/auth.css";</style>
   </head>
   <body>
     <h1>Account Removal</h1>
 
     <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+    <div metal:use-macro="../errors/#body">This is an error message.</div>
 
     <p><strong>This will permanently delete this user account.</strong></p>
 
@@ -21,6 +27,6 @@
       </form>
     </div>
 
-    <a href="${self/return_uri}">Cancel</a>
+    <a href="#" petal:attributes="href self/return_uri">Cancel</a>
   </body>
 </html>

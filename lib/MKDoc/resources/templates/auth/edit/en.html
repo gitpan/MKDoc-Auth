@@ -3,13 +3,19 @@
   xmlns:petal="http://purl.org/petal/1.0/"
 >
   <head>
-    <title>Edit ${self/object/full_name}</title>
+    <title>MKDoc::Auth - Edit ${self/object/full_name}</title>
+    <style
+      media="screen"
+      type="text/css"
+      title="Screen style sheet"
+      petal:content="string:@import url(/.resources/css/auth.css)\;"
+    >@import "../../../css/auth.css";</style>
   </head>
   <body>
-    <h1>Edit ${self/object/full_name}</h1>
+    <h1>MKDoc::Auth - Edit <span petal:replace="self/object/full_name">Fred Flintstone</span></h1>
 
     <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+    <div metal:use-macro="../errors/#body">This is an error message.</div>
 
     <!--? display input form ?-->
     <form petal:attributes="action self/uri" action="#" method="POST">
@@ -35,6 +41,6 @@
       </table>
       <input type="submit" value="Save Changes" />
     </form>
-    <a href="${self/return_uri}">Cancel Changes</a>
+    <a href="#" petal:attributes="href self/return_uri">Cancel Changes</a>
   </body>
 </html>

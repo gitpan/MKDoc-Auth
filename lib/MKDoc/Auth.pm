@@ -2,7 +2,7 @@ package MKDoc::Auth;
 use strict;
 use warnings;
 
-our $VERSION = 0.1;
+our $VERSION = 0.2;
 
 
 __END__
@@ -82,11 +82,12 @@ Recover lost password for a given login - sends an email.
 
 =head1 SPECIAL TRICKS
 
-L<MKDoc::Auth> does not use sessions or cookies. It use pure, plain simple HTTP
+L<MKDoc::Auth> does not use sessions or cookies. It uses plain simple HTTP
 authentication.
 
-L<MKDoc::Auth> implement a few tricks to make HTTP authentication possible, including optional authentication and logout mechanisms.
-Those tricks are explained in this paper:
+L<MKDoc::Auth> implement a few tricks to make HTTP authentication possible,
+including optional authentication and logout mechanisms. Those tricks are
+explained in this paper:
 
     http://wiki.slugbug.org.uk/HTTP_Authentication
 

@@ -1,12 +1,13 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         MKDoc-Auth
-version:      0.1
+version:      0.2
 version_from: lib/MKDoc/Auth.pm
 installdirs:  site
 requires:
     Crypt::PassGen:                0.04
     File::Touch:                   0.01
+    Mail::CheckUser:               1.21
     MKDoc::Core:                   0.3
     MKDoc::SQL:                    0.5
     Petal:                         2.04

@@ -43,6 +43,7 @@ WriteMakefile(
         'Petal'             => '2.04',
 	'File::Touch'       => '0.01',
         'Crypt::PassGen'    => '0.04',
+        'Mail::CheckUser'   => '1.21',
     },
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'lib/MKDoc/Auth.pm', # retrieve abstract from module

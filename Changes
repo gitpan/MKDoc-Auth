@@ -1,4 +1,9 @@
 Revision history for MKDoc::Auth.
 
+0.2 Fri Apr 16 13:07:26 2004
+    - Moved templates into a resource folder
+    - Added a nice simple default css
+    - Tweaked the templates a bit
+
 0.1
     - Initial release

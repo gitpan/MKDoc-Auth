@@ -1,0 +1,31 @@
+<html
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:petal="http://purl.org/petal/1.0/"
+  petal:define="login_p plugin: MKDoc::Auth::Plugin::Login"
+>
+
+  <head>
+    <title>MKDoc::Auth - Account Activation</title>
+    <style
+      media="screen"
+      type="text/css"
+      title="Screen style sheet"
+      petal:content="string:@import url(/.resources/css/auth.css)\;"
+    >@import "../../../css/auth.css";</style>
+  </head>
+
+  <body>
+
+    <h1>MKDoc::Auth - Account Activation.</h1>
+
+    <div metal:use-macro="../errors/#body">This is an error message.</div>
+    <p petal:condition="true:self/has_errors">
+      Due to these errors, your account cannot be activated.
+    </p>
+
+    <p petal:condition="false: self/has_errors">
+      Your account has been activated. You can now 
+      <a href="#" petal:attributes="href login_p/uri">login</a> onto this site.
+    </div>
+  </body>
+</html>

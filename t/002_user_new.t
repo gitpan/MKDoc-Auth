@@ -10,6 +10,8 @@ use MKDoc::SQL;
 ok (1);
 exit (0) unless (-e 'test/su/driver.pl');
 
+$ENV{SITE_DIR} = 'test';
+
 our @ERRORS = ();
 
 $MKDoc::Core::Error::CALLBACK = sub {

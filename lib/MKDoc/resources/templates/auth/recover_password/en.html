@@ -3,21 +3,27 @@
   xmlns:petal="http://purl.org/petal/1.0/"
 >
   <head>
-    <title>Password Recovery</title>
+    <title>MKDoc::Auth - Password Recovery</title>
+    <style
+      media="screen"
+      type="text/css"
+      title="Screen style sheet"
+      petal:content="string:@import url(/.resources/css/auth.css)\;"
+    >@import "../../../css/auth.css";</style>
   </head>
   <body>
-    <h1>Password Recovery</h1>
+    <h1>MKDoc::Auth - Password Recovery</h1>
 
     <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">Evil Errors!</div>
+    <div metal:use-macro="../errors/#body">This is an error message.</div>
 
-    <p petal:condition="true: self/is_post; true: self/matching_users">
+    <p petal:condition="true: self/is_post; true: self/object">
       <strong>A password recovery email has been sent.</strong>
     </p>
 
     <!--? display input form ?-->
     <div>
-      <form petal:attributes="action self/uri" action="#" method="POST">
+      <form petal:attributes="action self/uri" action="#" method="post">
         <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
         <table>
           <tr>

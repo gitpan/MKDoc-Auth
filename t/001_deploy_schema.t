@@ -3,9 +3,11 @@ use lib qw (lib ../lib);
 use Test::More 'no_plan';
 use strict;
 use warnings;
+use MKDoc::Core;
 use MKDoc::Core::Error;
 use MKDoc::Auth::User;
 use MKDoc::SQL;
+
 
 ok (1);
 exit (0) unless (-e 'test/su/driver.pl');

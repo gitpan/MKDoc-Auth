@@ -1,0 +1,19 @@
+body {
+  background: white;
+  color: #069;
+  font-family: serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: italic;
+  font-family: sans-serif;
+}
+
+a:link, a:visited {
+  color: #033;
+}
+
+a:hover, a:active {
+  background: #036;
+  color: white;
+}

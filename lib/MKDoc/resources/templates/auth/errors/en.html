@@ -4,6 +4,12 @@
 >
   <head>
     <title>Auth Admin Errors</title>
+    <style
+      media="screen"
+      type="text/css"
+      title="Screen style sheet"
+      petal:content="string:@import url(/.resources/css/auth.css)\;"
+    >@import "../../../css/auth.css";</style>
   </head>
   <body>
     <div metal:define-macro="body" class="error" petal:condition="true:self/has_errors">
