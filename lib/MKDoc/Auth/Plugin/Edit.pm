@@ -33,6 +33,7 @@ sub activate
 {
     my $self   = shift;
     my $object = $self->object() || return;
+
     $::MKD_USER || return;
     return $::MKD_USER->login() eq $object->login();
 }

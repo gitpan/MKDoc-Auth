@@ -1,43 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?
+
+  MKDoc::Auth - Auth Admin Errors template
+
+  The page content is split into 3 sections using divs with the classes
+  header, content and footer.
+
+  $Id: en.html,v 1.4 2004/06/30 16:23:26 jhiver Exp $
+
+?-->
 <html
+  xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:petal="http://purl.org/petal/1.0/"
 >
   <head>
-    <title>Auth Admin Errors</title>
-    <style
-      media="screen"
-      type="text/css"
-      title="Screen style sheet"
-      petal:content="string:@import url(/.resources/css/auth.css)\;"
-    >@import "../../../css/auth.css";</style>
+    <title>MKDoc::Auth - Auth Admin Errors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" 
+          media="screen" 
+          type="text/css" 
+          title="Screen style sheet"
+          petal:attributes="href string:/.resources/css/auth.css;"
+          href="../../../css/auth.css" />
+    <!--?
+
+      The favicon.ico is referenced with a fully qualified URI because Mozilla
+      won't load it with a relative URI (../../../images/favicon.ico)  
+
+    ?-->
+    <link rel="shortcut icon" 
+          type="image/x-icon" 
+          href="http://mkdoc.com/favicon.ico" 
+          petal:attributes="href string:/.resources/images/favicon.ico" />
   </head>
   <body>
-    <div metal:define-macro="body" class="error" petal:condition="true:self/has_errors">
-      <p>One or more errors were found:</p>
-      <div petal:omit-tag="string:1" petal:repeat="error self/errors">
-        <li petal:condition="error/is --auth/email/cannot_send">BUG: could not send subscription email.</li>
-        <li petal:condition="error/is --auth/user/id/undefined">BUG: auth/user/id/undefined.</li>
-        <li petal:condition="error/is --auth/user/id/no_match">BUG: auth/user/id/no_match.</li>
-        <li petal:condition="error/is --auth/user/login/changed">BUG: auth/user/login/changed.</li>
-        <li petal:condition="error/is --auth/user/login/empty">This login cannot be empty.</li>
-        <li petal:condition="error/is --auth/user/login/too_short">This login is too short.</li>
-        <li petal:condition="error/is --auth/user/login/too_long">This login is too long.</li>
-        <li petal:condition="error/is --auth/user/login/exists">This login already exists.</li>
-        <li petal:condition="error/is --auth/user/password/empty">This password field cannot be empty.</li>
-        <li petal:condition="error/is --auth/user/password/too_short">This password is too short.</li>
-        <li petal:condition="error/is --auth/user/password/too_long">This password is too long.</li>
-        <li petal:condition="error/is --auth/user/password/mismatch">The passwords do not match.</li>
-        <li petal:condition="error/is --auth/user/email/empty">You must provide a valid email address.</li>
-        <li petal:condition="error/is --auth/user/email/invalid">This email address does not appear to be valid.</li>
-        <li petal:condition="error/is --auth/user/full_name/empty">You must enter the full name for this account.</li>
-        <li petal:condition="error/is --auth/user/full_name/too_short">The full name field is too short.</li>
-        <li petal:condition="error/is --auth/user/full_name/too_long">The full name field is too long.</li>
-        <li petal:condition="error/is --auth/confirm/mismatch">The confirmation id does not match.</li>
-        <li petal:condition="error/is --auth/plugin/recover_login/email_empty">You must provide a valid email address.</li>
-        <li petal:condition="error/is --auth/plugin/recover_login/no_match">There is no account associated with this address.</li>
-        <li petal:condition="error/is --auth/plugin/recover_password/login_empty">You must provide a valid login.</li>
-        <li petal:condition="error/is --auth/plugin/recover_password/no_match">There is no account associated with this login.</li>
-      </div>
+
+    <div class="header">
+
+      <img src="../../../images/mkdoc.gif"
+           alt="MKDoc"
+           petal:attributes="src string:/.resources/images/mkdoc.gif" />
+
     </div>
+
+    <div class="content" id="content">
+
+      <h1>MKDoc::Auth - Auth Admin Errors</h1>
+
+      <div class="error" metal:define-macro="body" petal:condition="true:self/has_errors">
+        <p>One or more errors were found:</p>
+        <ul petal:repeat="error self/errors">
+          <li petal:condition="error/is --auth/email/cannot_send">BUG: could not send subscription email.</li>
+          <li petal:condition="error/is --auth/user/id/undefined">BUG: auth/user/id/undefined.</li>
+          <li petal:condition="error/is --auth/user/id/no_match">BUG: auth/user/id/no_match.</li>
+          <li petal:condition="error/is --auth/user/login/changed">BUG: auth/user/login/changed.</li>
+          <li petal:condition="error/is --auth/user/login/empty">This login cannot be empty.</li>
+          <li petal:condition="error/is --auth/user/login/too_short">This login is too short.</li>
+          <li petal:condition="error/is --auth/user/login/too_long">This login is too long.</li>
+          <li petal:condition="error/is --auth/user/login/exists">This login already exists.</li>
+          <li petal:condition="error/is --auth/user/password/empty">This password field cannot be empty.</li>
+          <li petal:condition="error/is --auth/user/password/too_short">This password is too short.</li>
+          <li petal:condition="error/is --auth/user/password/too_long">This password is too long.</li>
+          <li petal:condition="error/is --auth/user/password/mismatch">The passwords do not match.</li>
+          <li petal:condition="error/is --auth/user/email/empty">You must provide a valid email address.</li>
+          <li petal:condition="error/is --auth/user/email/invalid">This email address does not appear to be valid.</li>
+          <li petal:condition="error/is --auth/user/full_name/empty">You must enter the full name for this account.</li>
+          <li petal:condition="error/is --auth/user/full_name/too_short">The full name field is too short.</li>
+          <li petal:condition="error/is --auth/user/full_name/too_long">The full name field is too long.</li>
+          <li petal:condition="error/is --auth/confirm/mismatch">The confirmation id does not match.</li>
+          <li petal:condition="error/is --auth/plugin/recover_login/email_empty">You must provide a valid email address.</li>
+          <li petal:condition="error/is --auth/plugin/recover_login/no_match">There is no account associated with this address.</li>
+          <li petal:condition="error/is --auth/plugin/recover_password/login_empty">You must provide a valid login.</li>
+          <li petal:condition="error/is --auth/plugin/recover_password/no_match">There is no account associated with this login.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer">
+
+      <p>
+        <a href="http://www.webarchitects.co.uk/">Webarchitects</a> |
+        <a href="http://mkdoc.com/">MKDoc</a> |
+        <a href="http://webarch.net/">Webarch</a>
+      </p>
+
+    </div>
+
   </body>
 </html>

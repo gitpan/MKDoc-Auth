@@ -1,4 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?
+
+  MKDoc::Auth - Account Activation template
+
+  The page content is split into 3 sections using divs with the classes
+  header, content and footer.
+
+  $Id: en.html,v 1.4 2004/04/26 10:29:49 jhiver Exp $
+
+?-->
 <html
+  xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:petal="http://purl.org/petal/1.0/"
   petal:define="login_p   plugin: MKDoc::Auth::Plugin::Login;
@@ -6,44 +19,90 @@
 >
   <head>
     <title>MKDoc::Auth - Login Recovery</title>
-    <style
-      media="screen"
-      type="text/css"
-      title="Screen style sheet"
-      petal:content="string:@import url(/.resources/css/auth.css)\;"
-    >@import "../../../css/auth.css";</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" 
+          media="screen" 
+          type="text/css" 
+          title="Screen style sheet"
+          petal:attributes="href string:/.resources/css/auth.css;"
+          href="../../../css/auth.css" />
+    <!--?
+
+      The favicon.ico is referenced with a fully qualified URI because Mozilla
+      won't load it with a relative URI (../../../images/favicon.ico)  
+
+    ?-->
+    <link rel="shortcut icon" 
+          type="image/x-icon" 
+          href="http://mkdoc.com/favicon.ico" 
+          petal:attributes="href string:/.resources/images/favicon.ico" />
   </head>
   <body>
-    <h1>MKDoc::Auth - Login Recovery</h1>
 
-    <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">This is an error message.</div>
+    <div class="header">
 
-    <div petal:condition="true: self/is_post; true: self/matching_users">
-      <p>
+      <img src="../../../images/mkdoc.gif"
+           alt="MKDoc"
+           petal:attributes="src string:/.resources/images/mkdoc.gif" />
+
+    </div>
+
+    <div class="content" id="content">
+
+      <h1>MKDoc::Auth - Login Recovery</h1>
+
+      <!--? report errors, if any ?-->
+      <div metal:use-macro="../errors/#body">
+        <p>This is an error message.</p>
+      </div>
+
+      <p petal:condition="true: self/is_post; true: self/matching_users">
         <strong>A login reminder has been sent to
-                <a href="mailto:${self/email}" petal:content="self/email">fred@example.com</a></strong>.
+               <a href="mailto:${self/email}" petal:content="self/email">fred@example.com</a>
+        </strong>.
+      </p>
+    
+      <!--? display input form ?-->
+      <form petal:attributes="action self/uri" action="#" method="post" accept-charset="utf-8">
+        <div>
+          <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        </div>
+
+        <fieldset>
+          <legend>Email</legend>
+
+          <p>
+            Please enter your email address to recieve an account reminder.
+          </p>
+
+          <p>
+            <label for="email">Email Address</label>
+            <br />
+            <input type="text" 
+                   name="email" 
+                   id="email" 
+                   petal:attributes="value self/request/param --email" 
+                   size="25" />
+          </p>
+        </fieldset>
+    
+        <p>
+          <input type="submit" value="Send Email" />
+        </p>
+
+      </form>
+
+    </div>
+
+    <div class="footer">
+
+      <p>
+        <a href="http://www.webarchitects.co.uk/">Webarchitects</a> |
+        <a href="http://mkdoc.com/">MKDoc</a> |
+        <a href="http://webarch.net/">Webarch</a>
       </p>
 
-      <p>Once you know your <a href="#" petal:attributes="href login_p/uri">login</a>
-         information you can try to login. You can also <a href="#" petal:attributes="href recover_p/uri">recover
-         your password</a> if you have forgotten it.</p>
-      
     </div>
 
-    <!--? display input form ?-->
-    <div>
-      <form petal:attributes="action self/uri" action="#" method="POST">
-        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
-        <table>
-          <tr>
-            <td>Email Address:</td>
-            <td><input type="text" name="email" petal:attributes="value self/request/param --email" size="25" /></td>
-          </tr>
-        </table>
-
-        <input type="submit" value="Send Email" />
-      </form>
-    </div>
   </body>
 </html>

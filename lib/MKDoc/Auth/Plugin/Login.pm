@@ -18,7 +18,7 @@ web browser to display a form to input user credentials.
       $::MKD_USER = undef;
       my $rsp = $self->response();
       $rsp->Status ("401 Authorization Required");
-      $rsp->WWW_Authenticate ('Basic realm="MKDoc/Auth 0.1"');
+      $rsp->WWW_Authenticate ('Basic realm="MKDoc/Auth"');
   };
 
 If the user chooses to click 'cancel', it immediately discards their user
@@ -41,6 +41,8 @@ package MKDoc::Auth::Plugin::Login;
 use base qw/MKDoc::Core::Plugin/;
 use strict;
 use warnings;
+
+our $Timestamp_Amount = 4;
 
 
 =head1 API
@@ -73,6 +75,22 @@ sub location
 }
 
 
+sub run
+{
+    my $self = shift;
+    my $auth = eval { Apache->request()->header_in ('Authorization') };
+    $auth and not $::MKD_USER and new MKDoc::Core::Error ('auth/login/failed');
+    return $self->SUPER::run (@_);
+}
+
+
+sub uri_menu 
+{
+    my $self = shift;
+    return $self->uri (@_, timestamp => time() - 1);
+}
+
+
 =head2 $self->http_get();
 
 If no timestamp is supplied, performs a redirect with a timestamp in the future.
@@ -84,20 +102,30 @@ If a timestamp is supplied and is in the past, do not request browser credential
 =cut
 sub http_get
 {
-    my $self  = shift;
-
+    my $self = shift;
+    my $req  = $self->request();
+    
+    my $redirect = $req->param ('redirect');
     my $stamp = $self->timestamp() || do {
-        my $req   = $self->request();
-        my $stamp = time() + 5;
-        print $req->redirect ($self->uri() . "?$stamp");
+        my $stamp = time() + $Timestamp_Amount;
+        my @args  = ();
+        push @args, (timestamp => $stamp);
+        push @args, (redirect  => $redirect) if ($redirect);
+
+        print $req->redirect ($self->uri (@args));
         return 'TERMINATE';
     };
     
-    $stamp and time < $stamp and do {
+    time < $stamp and do {
         $::MKD_USER = undef;
         my $rsp = $self->response();
         $rsp->Status ("401 Authorization Required");
-        $rsp->WWW_Authenticate ('Basic realm="MKDoc/Auth 0.1"');
+        $rsp->WWW_Authenticate ('Basic realm="MKDoc/Auth"');
+    };
+
+    $::MKD_USER and time >= $stamp and $redirect and do {
+        print $req->redirect ($redirect);
+        return 'TERMINATE';
     };
 
     return $self->SUPER::http_get (@_);

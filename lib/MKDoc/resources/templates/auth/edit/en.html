@@ -1,46 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?
+
+  MKDoc::Auth - Edit user template 
+
+  The page content is split into 3 sections using divs with the classes
+  header, content and footer.
+
+  $Id: en.html,v 1.4 2004/06/30 16:23:26 jhiver Exp $
+
+?-->
 <html
+  xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:petal="http://purl.org/petal/1.0/"
 >
   <head>
     <title>MKDoc::Auth - Edit ${self/object/full_name}</title>
-    <style
-      media="screen"
-      type="text/css"
-      title="Screen style sheet"
-      petal:content="string:@import url(/.resources/css/auth.css)\;"
-    >@import "../../../css/auth.css";</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" 
+          media="screen" 
+          type="text/css" 
+          title="Screen style sheet"
+          petal:attributes="href string:/.resources/css/auth.css;"
+          href="../../../css/auth.css" />
+    <!--?
+
+      The favicon.ico is referenced with a fully qualified URI because Mozilla
+      won't load it with a relative URI (../../../images/favicon.ico)  
+
+    ?-->
+    <link rel="shortcut icon" 
+          type="image/x-icon" 
+          href="http://mkdoc.com/favicon.ico" 
+          petal:attributes="href string:/.resources/images/favicon.ico" />
   </head>
+
   <body>
-    <h1>MKDoc::Auth - Edit <span petal:replace="self/object/full_name">Fred Flintstone</span></h1>
 
-    <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">This is an error message.</div>
+    <div class="header">
 
-    <!--? display input form ?-->
-    <form petal:attributes="action self/uri" action="#" method="POST">
-      <table>
+      <img src="../../../images/mkdoc.gif"
+           alt="MKDoc"
+           petal:attributes="src string:/.resources/images/mkdoc.gif" />
 
-        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
-        <tr>
-          <td>Full Name:</td>
-          <td><input type="text" name="full_name" petal:attributes="value self/request/param --full_name" size="25" /></td>
-        </tr>
-        <tr>
-          <td>Email Address:</td>
-          <td><input type="text" name="email" petal:attributes="value self/request/param --email" size="25" /></td>
-        </tr>
-        <tr>
-          <td>Password:</td>
-          <td><input type="password" name="password_1" petal:attributes="value self/request/param --password_1" size="25" /></td>
-        </tr>
-        <tr>
-          <td>Password (Verify):</td>
-          <td><input type="password" name="password_2" petal:attributes="value self/request/param --password_2" size="25" /></td>
-        </tr>
-      </table>
-      <input type="submit" value="Save Changes" />
-    </form>
-    <a href="#" petal:attributes="href self/return_uri">Cancel Changes</a>
+    </div>
+
+    <div class="content" id="content">
+
+      <h1>MKDoc::Auth - Edit <span petal:replace="self/object/full_name">Fred Flintstone</span></h1>
+
+      <!--? report errors, if any ?-->
+      <div class="error"
+           metal:use-macro="../errors/#body">
+        <p>
+          This is an error message.
+        </p>
+      </div>
+     
+      <!--? display input form ?-->
+      <form petal:attributes="action self/uri" action="#" method="post" accept-charset="utf-8">
+
+        <!--? input is an inline element and need to be enclosed in something like a 
+              div even if it's hidden for valid XHTML. ?--> 
+        <div>
+          <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+        </div>
+
+        <fieldset>
+          <legend>User details</legend>
+
+          <p>
+            Please take care to ensure that your email address is correct.
+          </p>
+
+          <p>
+            <label for="full_name">Full Name</label>
+            <br />
+            <input type="text" 
+                   name="full_name" 
+                   id="full_name" 
+                   petal:attributes="value self/request/param --full_name" 
+                   size="25" />
+          </p>
+
+          <p>
+            <label for="email">Email Address</label>
+            <br />
+            <input type="text" 
+                   name="email" 
+                   id="email" 
+                   petal:attributes="value self/request/param --email" 
+                   size="25" />
+          </p>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Password</legend>
+
+          <p>
+            Please enter your password twice.
+          </p>
+
+          <p>
+            <label for="password_1">Password</label>
+            <br />
+            <input type="password" 
+                   name="password_1" 
+                   id="password_1" 
+                   petal:attributes="value self/request/param --password_1" 
+                   size="10" />
+          </p>
+
+          <p>
+            <label for="password_2">Password (Verify)</label>
+            <br />
+            <input type="password" 
+                   name="password_2" 
+                   id="password_2" 
+                   petal:attributes="value self/request/param --password_2" 
+                   size="10" />
+          </p>
+        </fieldset>
+
+        <p>
+          <input type="submit" value="Save Changes" />
+          or 
+          <a href="#" petal:attributes="href self/return_uri">Cancel Changes</a>
+        </p>
+
+      </form>
+    </div>
+
+    <div class="footer">
+
+      <p>
+        <a href="http://www.webarchitects.co.uk/">Webarchitects</a> |
+        <a href="http://mkdoc.com/">MKDoc</a> |
+        <a href="http://webarch.net/">Webarch</a>
+      </p>
+
+    </div>
+
   </body>
 </html>

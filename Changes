@@ -1,5 +1,14 @@
 Revision history for MKDoc::Auth.
 
+0.3 Sun Jul 18 19:45:04 2004
+    - Default templates are a bit prettier
+    - Fixed bad tal markup
+    - Fixed badly formed template XML
+    - Added error message for wrong credentials
+    - Added uri_auth() to MKDoc::Auth::Plugin::Login for direct auth
+    - Added uri_menu() to MKDoc::Auth::Plugin::Login for account management
+    - Fixed a silly version bug 
+
 0.2 Fri Apr 16 13:07:26 2004
     - Moved templates into a resource folder
     - Added a nice simple default css

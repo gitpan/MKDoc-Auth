@@ -20,7 +20,7 @@ the database.
 
 This process has a triple advantage:
 
-=list
+=over 4
 
 =item Account subscription is truly opt-in.
 

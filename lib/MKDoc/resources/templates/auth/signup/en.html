@@ -1,47 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?
+
+  MKDoc::Auth - Signup template
+
+  The page content is split into 3 sections using divs with the classes
+  header, content and footer.
+
+  $Id: en.html,v 1.6 2004/07/08 10:47:52 jhiver Exp $
+
+?-->
 <html
+  xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:petal="http://purl.org/petal/1.0/"
 >
   <head>
     <title>MKDoc::Auth - Signup</title>
-    <style
-      media="screen"
-      type="text/css"
-      title="Screen style sheet"
-      petal:content="string:@import url(/.resources/css/auth.css)\;"
-    >@import "../../../css/auth.css";</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" 
+          media="screen" 
+          type="text/css" 
+          title="Screen style sheet"
+          petal:attributes="href string:/.resources/css/auth.css;"
+          href="../../../css/auth.css" />
+    <!--?
 
+      The favicon.ico is referenced with a fully qualified URI because Mozilla
+      won't load it with a relative URI (../../../images/favicon.ico)  
+
+    ?-->
+    <link rel="shortcut icon" 
+          type="image/x-icon" 
+          href="http://mkdoc.com/favicon.ico" 
+          petal:attributes="href string:/.resources/images/favicon.ico" />
   </head>
+
   <body>
-    <h1>MKDoc::Auth - Signup</h1>
+    <div class="header">
 
-    <!--? report errors, if any ?-->
-    <div metal:use-macro="../errors/#body">This is an error message.</div>
+      <img src="../../../images/mkdoc.gif"
+           alt="MKDoc"
+           petal:attributes="src string:/.resources/images/mkdoc.gif" />
 
-    <div petal:condition="true:self/object">
+    </div>
+
+    <div class="content" id="content">
+
+      <h1>MKDoc::Auth - Signup</h1>
+
+      <!--? report errors, if any ?-->
+      <div class="error"
+           metal:use-macro="../errors/#body">
+        <p>
+          This is an error message.
+        </p>
+      </div>
+    
+      <div petal:condition="true:self/object">
+        <p>
+          An email has been sent to
+          <a href="mailto:${self/object/email}"
+             petal:content="self/object/email">flintstone@example.com</a>.
+        </p>
+        <p>
+          It contains a confirmation link as well as your login and password 
+          information.
+        </p>
+      </div>
+    
+      <div petal:condition="false:self/object">
+        <form petal:attributes="action self/uri" action="#" method="post" accept-charset="utf-8">
+          <div>
+            <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
+          </div>
+
+          <fieldset>
+            <legend>User details</legend>
+ 
+            <p>
+              Please take care to ensure that your email address is correct.
+            </p>
+ 
+            <p>
+              <label for="full_name">Full Name</label>
+ 
+              <br />
+              <input type="text" 
+                     name="full_name" 
+                     id="full_name" 
+                     petal:attributes="value self/request/param --full_name" 
+                     size="25" />
+            </p>
+ 
+            <p>
+              <label for="email">Email Address</label>
+              <br />
+              <input type="text" 
+                     name="email" 
+                     id="email" 
+                     petal:attributes="value self/request/param --email" 
+                     size="25" />
+            </p>
+ 
+          </fieldset>
+
+          <p>
+            <input type="submit" value="Create Account" />
+          </p>
+
+        </form>
+      </div>
+
+    </div>
+
+    <div class="footer">
+
       <p>
-        An email has been sent to
-        <a href="mailto:${self/object/email}"
-           petal:content="self/object/email">flintstone@example.com</a>.
+        <a href="http://www.webarchitects.co.uk/">Webarchitects</a> |
+        <a href="http://mkdoc.com/">MKDoc</a> |
+        <a href="http://webarch.net/">Webarch</a>
       </p>
-      <p>It contains a confirmation link as well as your login and password information.</p>
+
     </div>
 
-    <div petal:condition="false:self/object">
-      <form petal:attributes="action self/uri" action="#" method="POST">
-        <input type="hidden" name="return_uri" petal:attributes="value self/return_uri" />
-        <table>
-          <tr>
-            <td>Email Address:</td>
-            <td><input type="text" name="email" petal:attributes="value self/request/param --email" size="25" /></td>
-          </tr>
-          <tr>
-            <td>Full Name:</td>
-            <td><input type="text" name="full_name" petal:attributes="value self/request/param --full_name" size="25" /></td>
-          </tr>
-        </table>
-        <input type="submit" value="Create Account" />
-      </form>
-    </div>
   </body>
 </html>

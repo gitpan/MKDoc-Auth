@@ -1,31 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--?
+
+  MKDoc::Auth - Account Activation template
+
+  The page content is split into 3 sections using divs with the classes
+  header, content and footer.
+
+  $Id: en.html,v 1.4 2004/04/26 10:29:49 jhiver Exp $
+
+?--> 
 <html
+  xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr"
   xmlns:metal="http://xml.zope.org/namespaces/metal"
   xmlns:petal="http://purl.org/petal/1.0/"
   petal:define="login_p plugin: MKDoc::Auth::Plugin::Login"
 >
-
   <head>
     <title>MKDoc::Auth - Account Activation</title>
-    <style
-      media="screen"
-      type="text/css"
-      title="Screen style sheet"
-      petal:content="string:@import url(/.resources/css/auth.css)\;"
-    >@import "../../../css/auth.css";</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" 
+          media="screen" 
+          type="text/css" 
+          title="Screen style sheet"
+          petal:attributes="href string:/.resources/css/auth.css;"
+          href="../../../css/auth.css" />
+    <!--?
+
+      The favicon.ico is referenced with a fully qualified URI because Mozilla
+      won't load it with a relative URI (../../../images/favicon.ico)  
+
+    ?-->
+    <link rel="shortcut icon" 
+          type="image/x-icon" 
+          href="http://mkdoc.com/favicon.ico" 
+          petal:attributes="href string:/.resources/images/favicon.ico" />
   </head>
 
   <body>
 
-    <h1>MKDoc::Auth - Account Activation.</h1>
+    <div class="header">
 
-    <div metal:use-macro="../errors/#body">This is an error message.</div>
-    <p petal:condition="true:self/has_errors">
-      Due to these errors, your account cannot be activated.
-    </p>
+      <img src="../../../images/mkdoc.gif"
+           alt="MKDoc"
+           petal:attributes="src string:/.resources/images/mkdoc.gif" />
 
-    <p petal:condition="false: self/has_errors">
-      Your account has been activated. You can now 
-      <a href="#" petal:attributes="href login_p/uri">login</a> onto this site.
     </div>
+
+    <div class="content" id="content">
+
+      <h1>MKDoc::Auth - Account Activation</h1>
+
+      <div class="error"
+           metal:use-macro="../errors/#body">
+        <p>
+          This is an error message.
+        </p>
+      </div>
+
+      <p petal:condition="true: self/has_errors">
+        Due to these errors, your account cannot be activated.
+      </p>
+ 
+      <p petal:condition="false: self/has_errors">
+        Your account has been activated. You can now 
+        <a href="#" petal:attributes="href login_p/uri">login</a> 
+        to this site.
+      </p>
+
+    </div>
+
+    <div class="footer">
+
+      <p>
+        <a href="http://www.webarchitects.co.uk/">Webarchitects</a> |
+        <a href="http://mkdoc.com/">MKDoc</a> |
+        <a href="http://webarch.net/">Webarch</a>
+      </p>
+
+    </div>
+
   </body>
 </html>

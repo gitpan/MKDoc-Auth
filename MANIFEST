@@ -12,6 +12,8 @@ lib/MKDoc/Auth/Plugin/Signup.pm
 lib/MKDoc/Auth/TempUser.pm
 lib/MKDoc/Auth/User.pm
 lib/MKDoc/resources/css/auth.css
+lib/MKDoc/resources/images/favicon.ico
+lib/MKDoc/resources/images/mkdoc.gif
 lib/MKDoc/resources/templates/auth/confirm/en.html
 lib/MKDoc/resources/templates/auth/edit/en.html
 lib/MKDoc/resources/templates/auth/emails/recover_login/en.xml

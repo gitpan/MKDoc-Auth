@@ -89,11 +89,13 @@ sub handler
 {
     my $r = shift;
     $::MKD_USER = undef;
+    $::AUTH_FAILED = undef;
 
     my $pass  = get_password() || return OK;
     my $login = get_login()    || return OK;
+
     my $user  = MKDoc::Auth::User->load_from_login ($login) || return OK;
-    $user->check_password ($pass) || return OK;
+    $user->check_password ($pass)                           || return OK;
 
     $::MKD_USER = $user;
     return OK; 
