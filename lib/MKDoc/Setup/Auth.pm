@@ -59,6 +59,23 @@ sub main::install_auth
 }
 
 
+sub keys { qw /SITE_DIR NAME USER PASS HOST PORT/ }
+
+
+sub label
+{
+    my $self = shift;
+    $_ = shift;
+    /SITE_DIR/    and return "Site Directory";
+    /NAME/        and return "Database Name";
+    /USER/        and return "Database User";
+    /PASS/        and return "Database Password";
+    /HOST/        and return "Database Host";
+    /PORT/        and return "Database Port";
+    return;
+}
+
+
 sub install
 {
     my $self = shift;

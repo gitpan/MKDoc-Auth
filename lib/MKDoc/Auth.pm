@@ -2,7 +2,7 @@ package MKDoc::Auth;
 use strict;
 use warnings;
 
-our $VERSION = 0.4;
+our $VERSION = 0.5;
 
 
 __END__

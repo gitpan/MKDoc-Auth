@@ -58,6 +58,8 @@ use MKDoc::Auth;
 use warnings;
 use strict;
 
+our $AUTOLOAD;
+
 our @ISA = ();
 
 
@@ -253,6 +255,26 @@ sub _expiration_time
 sub _cache_object
 {
     return MKDoc::Core::FileCache->instance ('MKDoc::Auth::TempUser');
+}
+
+
+sub AUTOLOAD
+{
+    my ($pkg, $name) = $AUTOLOAD =~ /(.*)::(.*)/;
+
+    my $self  = shift;
+    my $super = $::MKD_Auth_User_CLASS || 'MKDoc::Auth::User';
+
+    local @ISA = ();
+    push  @ISA, $super;
+
+    my $code = eval "sub { $super" . "::$name (\@_) }";
+    return $code->($self, @_);
+}
+
+
+sub DESTROY
+{
 }
 
 

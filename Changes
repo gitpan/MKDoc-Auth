@@ -1,5 +1,8 @@
 Revision history for MKDoc::Auth.
 
+0.5 Tue Aug 24 12:56:36 2004
+    - Fixed broken dynamic inheritance in MKDoc::Auth::TempUser
+
 0.4 Mon Aug  9 12:46:10 2004
     - Made it so that $::MKD_Auth_User_CLASS defines which user class to use
     - Changed the Makefile so that it's not interactive by default
